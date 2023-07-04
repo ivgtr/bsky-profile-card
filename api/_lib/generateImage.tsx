@@ -1,6 +1,7 @@
 import satori from "satori";
 import sharp from "sharp";
 import fs from "fs";
+import path from "path";
 import type { PersonalData } from "./getBskyData";
 import type { OptionalColor, OptionalMode, Options } from "./parser";
 
@@ -8,7 +9,9 @@ export const generateImage = async (
   personalData: PersonalData,
   options: Options
 ): Promise<Buffer> => {
-  const font = fs.readFileSync("./fonts/NotoSansJP-Regular.ttf");
+  const font = fs.readFileSync(
+    path.join(process.cwd(), "./fonts/NotoSansJP-Regular.ttf")
+  );
 
   const color: { [key in OptionalColor]: string } = {
     blue: "#1b95e0",
